@@ -7,6 +7,16 @@ object Prefs {
     private const val FILE = "zcode_lan"
     private const val KEY_URL = "remote_url"
     private const val KEY_KEEP_SCREEN_ON = "keep_screen_on"
+    private const val KEY_LAST_UPDATE_CHECK = "last_update_check"
+
+    fun lastUpdateCheck(ctx: Context): Long =
+        ctx.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+            .getLong(KEY_LAST_UPDATE_CHECK, 0L)
+
+    fun setLastUpdateCheck(ctx: Context, millis: Long) {
+        ctx.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+            .edit().putLong(KEY_LAST_UPDATE_CHECK, millis).apply()
+    }
 
     fun remoteUrl(ctx: Context): String =
         ctx.getSharedPreferences(FILE, Context.MODE_PRIVATE).getString(KEY_URL, "").orEmpty()
