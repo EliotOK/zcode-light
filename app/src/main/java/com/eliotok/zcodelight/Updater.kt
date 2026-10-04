@@ -58,7 +58,7 @@ object Updater {
     }
 
     private fun fetchLatestRelease(): ReleaseInfo {
-        val body = httpGet("https://api.github.com/repos/$REPO/releases/latest")
+        val body = fetchText("https://api.github.com/repos/$REPO/releases/latest")
         val obj = JSONObject(body)
         var apkUrl: String? = null
         var sha256Url: String? = null
